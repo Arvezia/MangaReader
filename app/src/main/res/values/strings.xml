@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MangaReader</string>
+    <string name="manga_title">Manga Title</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="name">Naufaldy Salsabila</string>
+    <string name="email">naufaldysalsabila@gmail.com</string>
+    <string name="manga">Manga</string>
+    <string name="about">About</string>
+</resources>

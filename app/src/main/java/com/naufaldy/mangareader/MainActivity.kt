@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity(),  View.OnClickListener {
+class MainActivity : AppCompatActivity(), ListMangaAdapter.OnItemClickCallback{
 
     private lateinit var rvManga: RecyclerView
     private var list: ArrayList<Manga> = arrayListOf()
@@ -26,33 +26,13 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
         list.addAll(MangaList.listdata)
         showRecyclerList()
 
-        val readManga : Button = findViewById(R.id.btn_read_manga)
-        readManga.setOnClickListener(this)
     }
     private fun showRecyclerList(){
         rvManga.layoutManager  = LinearLayoutManager(this)
         val listMangaAdapter = ListMangaAdapter(list)
         rvManga.adapter = listMangaAdapter
 
-        /*listMangaAdapter.setOnItemClickCallback(object : ListMangaAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: Manga) {
-                showSelectedManga(data)
-            }
-        })*/
-    }
-
-    override fun onClick(v: View){
-        when (v.id){
-            R.id.btn_read_manga ->{
-
-                val moveManga = Intent (this@MainActivity, MangaDetail::class.java)
-                moveManga.putExtra(MangaDetail.EXTRA_NAME,)
-                moveManga.putExtra(MangaDetail.EXTRA_COVER,)
-                moveManga.putExtra(MangaDetail.EXTRA_SYNOPSIS,)
-                startActivity(moveManga)
-
-            }
-        }
+        listMangaAdapter.setOnItemClickCallback(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -63,24 +43,24 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.menu_page -> {
-            this.startActivity(Intent(this, MainActivity::class.java))
+                this.startActivity(Intent(this, MainActivity::class.java))
                 return true
-        }
+            }
             R.id.about_page -> {
-            this.startActivity(Intent(this@MainActivity, AboutActivity::class.java))
+                this.startActivity(
+                    Intent(this@MainActivity, AboutActivity::class.java)
+                )
                 return true
-        }
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
-
-
-
-  /*  private fun showSelectedManga (manga: Manga){
-            title = manga.name
-           val moveManga  = Intent(this, MangaActivity::class.java))
-            moveManga.putExtra(moveManga.EXTRA_NAME, )
-
-        }*/
+    override fun onItemClicked(data: Manga) {
+        val moveManga = Intent (this@MainActivity, MangaDetail::class.java)
+        moveManga.putExtra(MangaDetail.EXTRA_NAME, data.name)
+        moveManga.putExtra(MangaDetail.EXTRA_COVER, data.cover)
+        moveManga.putExtra(MangaDetail.EXTRA_SYNOPSIS, data.synopsis)
+        startActivity(moveManga)
     }
+}

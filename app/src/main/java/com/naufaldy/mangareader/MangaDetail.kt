@@ -31,9 +31,9 @@ class MangaDetail:AppCompatActivity() {
 
 
 
-        nameReceived.ln_manga_title
-        coverReceived.MangaImg
-        synopsisReceived.ln_manga_synopsis
+        nameReceived.text = name
+        //coverReceived.
+        synopsisReceived.text = synopsis
 
 
 

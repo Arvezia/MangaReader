@@ -44,15 +44,11 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
     override fun onClick(v: View){
         when (v.id){
             R.id.btn_read_manga ->{
-                val moveIntent = Intent(this@MainActivity, MangaActivity::class.java)
-                startActivity(moveIntent)
-            }
-            R.id.btn_read_manga ->{
 
                 val moveManga = Intent (this@MainActivity, MangaDetail::class.java)
                 moveManga.putExtra(MangaDetail.EXTRA_NAME,)
-                moveManga.putExtra(MangaDetail.EXTRA_COVER)
-                moveManga.putExtra(MangaDetail.EXTRA_SYNOPSIS)
+                moveManga.putExtra(MangaDetail.EXTRA_COVER,)
+                moveManga.putExtra(MangaDetail.EXTRA_SYNOPSIS,)
                 startActivity(moveManga)
 
             }
